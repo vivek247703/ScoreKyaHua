@@ -42,6 +42,7 @@ export const LiveMatches=()=> {
     <button className='m-2 p-2 bg-black text-white rounded-lg shadow-sm' onClick={()=>setDomestic('international')}>International</button>
     <button className='m-2 p-2 bg-black text-white rounded-lg shadow-sm'  onClick={()=>setDomestic('domestic')}>Domestic</button>
     <button className='m-2 p-2 bg-black text-white rounded-lg shadow-sm'  onClick={()=>setDomestic('women')}>Women</button>
+    <button className='m-2 p-2 bg-black text-white rounded-lg shadow-sm'  onClick={()=>setDomestic('league')}>league</button>
     <div className='flex flex-wrap'>
       {
         renderMessage()

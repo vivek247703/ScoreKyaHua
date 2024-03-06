@@ -9,14 +9,18 @@ import { MatchDetails } from './Components/MatchDetails';
 import { MainContainer } from './Components/MainContainer';
 import store from './Utils/Store';
 import { Provider } from 'react-redux';
+import React from 'react';
 
 function App() {
   return (
         <div>
-           <Provider store={store}>
+          <React.StrictMode>
+          <Provider store={store}>
                 <Header />
                    <RouterProvider router={appRouter} />
            </Provider>
+          </React.StrictMode>
+           
         </div>  
     
   );
