@@ -15,6 +15,13 @@ export const MatchDetails=()=> {
  
   useEffect(()=>{
     getLiveMatchData();
+    const i = setInterval(() => {
+      dispatch(addMessage({
+        score : Live,
+       }))
+    }, 250000);
+    return ()=> clearInterval(i);
+  
   
 },[Livedata])
 
@@ -35,13 +42,7 @@ const getLiveMatchData = async () => {
       value: value,
     }));*/
     setLive(arrayOfValues);
-    const i = setInterval(() => {
-      dispatch(addMessage({
-        score : Live,
-       }))
-    }, 250000);
-    return ()=> clearInterval(i);
-  
+    
   };
 
   
