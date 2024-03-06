@@ -19,7 +19,7 @@ export const MatchDetails=()=> {
       dispatch(addMessage({
         score : Live,
        }))
-    }, 250000);
+    }, 25000);
     return ()=> clearInterval(i);
   
   
@@ -45,30 +45,12 @@ const getLiveMatchData = async () => {
     
   };
 
-  
-  
-  
-  
-  
+
   return (
-    <div className="flex justify-center bg-slate-100">
+    <div>
       {
-        Livedata.map((e)=>(
-          <><h4 className="text-black font-bold justify-center">{e.score[2]}</h4><div className='flex'>
-            <div className='my-2'>
-              <ul>
-                <li><span className='font-bold'>Batter</span></li>
-                <li><span>{e.score[4]}  {e.score[5]}{e.score[6]}</span></li>
-                <li><span>{e.score[8]}  {e.score[9]}{e.score[10]}</span></li>
-              </ul>
-            </div>
-            <div className='mx-52 my-2'>
-              <ul>
-                <li><span className='font-bold'>Bowler</span></li>
-                <li><span>{e.score[12]}  {e.score[14]}/{e.score[15]}</span></li>
-              </ul>
-            </div>
-          </div></>
+        Livedata.map((e,i)=>(
+          <Commentry key={i} data={e.score}/>
         ))
       }
     </div>
