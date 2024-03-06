@@ -3,56 +3,40 @@ import { useSearchParams } from 'react-router-dom';
 import { Commentry } from './Commentry';
 import {useDispatch, useSelector} from "react-redux";
 import { addMessage } from '../Utils/MatchDetailsSclicer';
+import { Shimmer } from './Shimmer';
 
 export const MatchDetails=()=> {
   const [Live, setLive]=useState([]);
   const [searchParams] = useSearchParams();
+  const [show, setshow]= useState(false);
   const dispatch = useDispatch();
   const Livedata = useSelector((store)=>store.Runs.messages);
   
-
-  //const newArray = [1, 2, 3, 4, 5];
- 
-  useEffect(()=>{
-    getLiveMatchData();
+  
+  useEffect(() => {
     const i = setInterval(() => {
-      dispatch(addMessage({
-        score : Live,
-       }))
-    }, 25000);
+      getLiveMatchData();
+    }, 60000);
     return ()=> clearInterval(i);
-  
-  
-},[Livedata])
-
-
+},[Live])
 
 const getLiveMatchData = async () => {
-    const data = await fetch("https://cricbuzz-live.vercel.app/v1/score/"+searchParams.get("i")+"");
-    const json = await data.json();
-    const arrayOfValues = Object.values(json.data);
-    console.log(arrayOfValues);
-    //const items = "Felix";
-    //const items1 = Object.values(items.title);
-    //console.log(items);
-    //console.log(json.data);
-    /*const items = json.data;
-    const arrayFromObject = Object.entries(items).map(([key, value]) => ({
-      key: key,
-      value: value,
-    }));*/
-    setLive(arrayOfValues);
-    
-  };
-
+  const data = await fetch("https://cricbuzz-live.vercel.app/v1/score/"+searchParams.get("i")+"");
+  const json = await data.json();
+  const arrayOfValues = Object.keys(json).map(key => json[key]);
+  console.log(arrayOfValues);
+  setLive(arrayOfValues);
+  setshow(true);
+};
+if(Live===null) return <Shimmer />; 
 
   return (
     <div>
-      {
-        Livedata.map((e,i)=>(
-          <Commentry key={i} data={e.score}/>
-        ))
-      }
+        {show && 
+      Live.map((e,i)=>(
+        <Commentry key={i} data={e}/>
+      ))
+    }
     </div>
     
   )
