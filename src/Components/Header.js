@@ -1,4 +1,5 @@
 import React from 'react'
+import logo from '../Assets/logo.png'
 
 export const Header=()=> {
   return (
@@ -6,7 +7,7 @@ export const Header=()=> {
         <div>
         <a href="/">
           <img
-            src='https://play-lh.googleusercontent.com/UCQXKmZg3qOLL9Dkt9hFXo_m3a_NGlxqvf9gYxKZ0GXUuXXxw90k6qVVeejj1yYo_Z8'
+              src={logo}
             alt="App Logo"
             className="w-40 h-24"
           />
