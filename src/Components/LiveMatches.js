@@ -25,7 +25,7 @@ export const LiveMatches=()=> {
         setMatches(json?.data?.matches);
       };
       const renderMessage = () => {
-        if (Matches) {
+        if (Matches.length!=0) {
           return (Matches.map((e)=>(
             <Link key={e.id} to={"/score?i="+e.id}>
               <ShowMathesCard  data={e}/>
